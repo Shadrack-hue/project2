@@ -147,7 +147,7 @@ ul {
     pointer-events: none;
     z-index: 99999;
     transform: translate(-50%, -50%);
-    opacity: 0; /* Hidden until mouse moves */
+    opacity: 0;
     transition: opacity 0.3s ease, background-color 0.3s ease;
 }
 
@@ -162,11 +162,10 @@ ul {
     pointer-events: none;
     z-index: 99998;
     transform: translate(-50%, -50%);
-    opacity: 0; /* Hidden until mouse moves */
+    opacity: 0;
     transition: width 0.2s ease, height 0.2s ease, opacity 0.3s ease, border-color 0.3s ease;
 }
 
-/* Hide default cursor and show custom cursor only on devices with a physical mouse */
 @media (pointer: fine) {
     body, a, button, input, textarea {
         cursor: none !important;
@@ -176,7 +175,6 @@ ul {
     }
 }
 
-/* Hover effect state (triggered via JS) */
 .cursor-outline.hover-active {
     width: 60px;
     height: 60px;
