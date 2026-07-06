@@ -146,4 +146,53 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     revealElements.forEach(el => revealObserver.observe(el));
+
+    /* ----------------------------------------------------
+       7. FORMSPREE AJAX SUBMISSION (Premium UX)
+       ---------------------------------------------------- */
+    const contactForm = document.getElementById("contactForm");
+    
+    if (contactForm) {
+        contactForm.addEventListener("submit", async (e) => {
+            e.preventDefault(); // Prevent default page redirect
+            
+            const btn = contactForm.querySelector('button[type="submit"]');
+            const originalBtnContent = btn.innerHTML;
+            
+            // Loading state
+            btn.innerHTML = '<span>Transmitting... <i class="fas fa-spinner fa-spin"></i></span>';
+            btn.disabled = true;
+            
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: new FormData(contactForm),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    // Success state
+                    btn.innerHTML = '<span>Data Sent <i class="fas fa-check"></i></span>';
+                    btn.style.backgroundColor = "#22c55e"; // Green success color
+                    contactForm.reset();
+                } else {
+                    // Error state
+                    btn.innerHTML = '<span>Error. Try Again <i class="fas fa-times"></i></span>';
+                    btn.style.backgroundColor = "#ef4444"; // Red error color
+                }
+            } catch (error) {
+                btn.innerHTML = '<span>Error. Try Again <i class="fas fa-times"></i></span>';
+                btn.style.backgroundColor = "#ef4444";
+            }
+            
+            // Revert button back to normal after 3.5 seconds
+            setTimeout(() => {
+                btn.innerHTML = originalBtnContent;
+                btn.style.backgroundColor = "";
+                btn.disabled = false;
+            }, 3500);
+        });
+    }
 });
