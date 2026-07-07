@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
        ---------------------------------------------------- */
     const typedOutput = document.getElementById("typed-output");
     if (typedOutput) {
-        const phrases = ["AI Intelligence", "Scalable Systems", "Clean Architecture"];
+        const phrases = ["AI Intelligence", "Scalable Systems", "Clean Architecture", "Engineering Technology", "Complex Iot Devices"];
         let phraseIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
